@@ -1,421 +1,418 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografica: L'Arte della Data Visualization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px;
+            max-height: 320px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+                max-height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #F94144, #F3722C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #F8961E;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="it"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Infografica: L'Arte della Data Visualization&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 500px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 280px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-height: 320px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>height: 320px;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>max-height: 350px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.gradient-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to right, #F94144, #F3722C);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-gray-50 text-gray-800"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto p-4 md:p-8"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center my-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="gradient-text"&gt;L'Arte di Raccontare Storie&lt;/span&gt;&lt;br&gt;con i Dati</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"&gt;Una guida interattiva per trasformare numeri complessi in insight chiari e decisioni efficaci attraverso la data visualization.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="perche" class="my-16"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-10"&gt;1. Perché Visualizzare i Dati?&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl mb-3" style="color: #F94144;"&gt;💡&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Scoprire Insight&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Identifica pattern, trend, correlazioni e anomalie che rimarrebbero nascosti in una tabella.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl mb-3" style="color: #F8961E;"&gt;🧩&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Semplificare&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Traduci set di dati complessi in formati immediatamente comprensibili a colpo d'occhio.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl mb-3" style="color: #43AA8B;"&gt;📢&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Comunicare&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Trasmetti il tuo messaggio in modo più efficace, persuasivo e memorabile al pubblico.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-5xl mb-3" style="color: #577590;"&gt;🎯&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2"&gt;Guidare Decisioni&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Fornisci una base solida e visiva per prendere decisioni strategiche più informate e rapide.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="pilastri" class="my-16 bg-white p-8 rounded-xl shadow-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-6"&gt;2. I Pilastri di un Grafico Efficace&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto"&gt;Un grafico deve essere **funzionale** e trasmettere il messaggio senza distorsioni o rumore visivo.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 rounded-lg bg-red-50" style="border: 2px solid #F94144;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-lg" style="color: #F94144;"&gt;Chiarezza&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;Messaggio immediato.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 rounded-lg bg-amber-50" style="border: 2px solid #F8961E;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-lg" style="color: #F8961E;"&gt;Accuratezza&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;Dati veritieri (Asse Y da zero).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 rounded-lg bg-yellow-50" style="border: 2px solid #F9C74F;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-lg" style="color: #F9C74F;"&gt;Semplicità&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;Rimuovi il disordine ("Chart Junk").&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 rounded-lg bg-green-50" style="border: 2px solid #90BE6D;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-lg" style="color: #90BE6D;"&gt;Contesto&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;Titolo, assi e unità etichettati.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-4 rounded-lg bg-blue-50" style="border: 2px solid #577590;"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-lg" style="color: #577590;"&gt;Messaggio&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600"&gt;Un solo obiettivo forte.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="guida" class="my-16"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-2"&gt;3. La Guida alla Scelta del Grafico&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto"&gt;Scegli lo strumento in base all'obiettivo: **Confronto, Tendenza, Proporzione o Relazione.**&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2 text-center" style="color: #F94144;"&gt;Confrontare: Grafico a Barre&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-4 text-center"&gt;Ideale per confrontare categorie discrete. Usa l'ordinamento per facilitare la classifica.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="barChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mt-4 text-sm text-gray-500 text-center"&gt;**Esempio:** "Vendite per Regione nel Q1 2024" – Identifica chiaramente il leader di mercato (Regione B).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2 text-center" style="color: #F8961E;"&gt;Tendenza: Grafico a Linee&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-4 text-center"&gt;Essenziale per mostrare andamenti e serie storiche nel tempo (es. mesi, trimestri).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="lineChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;p class="mt-4 text-sm text-gray-500 text-center"&gt;**Esempio:** "Andamento delle Visite al Sito Web" – Evidenzia picchi e cali stagionali nel corso dell'anno.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2 text-center" style="color: #90BE6D;"&gt;Proporzioni: Grafico a Ciambella&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-4 text-center"&gt;Per mostrare la composizione di un intero (il 100%). **Usare solo per 2-4 categorie distinte.**&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="doughnutChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;p class="mt-4 text-sm text-gray-500 text-center"&gt;**Esempio:** "Distribuzione Budget" – Mostra che la maggioranza del budget (45%) è dedicata al Marketing.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white p-6 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2 text-center" style="color: #577590;"&gt;Relazioni: Grafico a Dispersione&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-4 text-center"&gt;Per trovare correlazioni tra due variabili (es. se X aumenta, aumenta anche Y?).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;canvas id="scatterChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;p class="mt-4 text-sm text-gray-500 text-center"&gt;**Esempio:** "Investimento vs Acquisizioni" – Conferma una correlazione positiva tra i due fattori.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="colori" class="my-16 bg-white p-8 rounded-xl shadow-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-6"&gt;4. L'Importanza Etica del Colore&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto"&gt;Il colore guida l'occhio. Usalo per significato, non per estetica. La palette "Vibrant" qui utilizzata è: #F94144, #F8961E, #F9C74F, #90BE6D, #43AA8B, #577590.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-xl mb-2" style="color: #F8961E;"&gt;Sequenziali&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-3"&gt;Intensità crescente di un valore (es. Mappa di Calore).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex rounded-lg overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/5 h-12" style="background-color: #ffe0d5;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/5 h-12" style="background-color: #f9b49b;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/5 h-12" style="background-color: #f68c74;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/5 h-12" style="background-color: #F94144;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/5 h-12" style="background-color: #d6383c;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-xl mb-2" style="color: #577590;"&gt;Divergenti&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-3"&gt;Deviazioni da un punto centrale (es. Profitti/Perdite).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex rounded-lg overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #F94144;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #f9c74f;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #90BE6D;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #43AA8B;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-bold text-xl mb-2" style="color: #43AA8B;"&gt;Categorici&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-gray-600 mb-3"&gt;Distinguere gruppi non ordinati (es. Nomi di prodotti).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex rounded-lg overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #F9844A;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #F9C74F;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #90BE6D;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="w-1/4 h-12" style="background-color: #577590;"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mt-6 text-sm text-center text-gray-500"&gt;**Accessibilità:** Evita combinazioni rosso/verde per distinzioni critiche per non penalizzare chi soffre di daltonismo.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="consigli" class="my-16"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-10"&gt;5. Storytelling e Narrazione con i Dati&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;ul class="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xl mr-3" style="color: #F94144;"&gt;1.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="font-bold"&gt;Il "Perché"&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-gray-600"&gt;Inizia spiegando perché il dato è rilevante per il pubblico. Dà un contesto.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xl mr-3" style="color: #F8961E;"&gt;2.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="font-bold"&gt;Il "Cosa"&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-gray-600"&gt;Mostra il grafico con un titolo che sia già l'insight ("Le vendite sono cresciute del 20%").&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;li class="flex items-start"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xl mr-3" style="color: #90BE6D;"&gt;3.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="font-bold"&gt;L'Azione&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-gray-600"&gt;Concludi con l'implicazione: "Cosa facciamo ora che conosciamo questo dato?".&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-6 text-sm text-center text-gray-500"&gt;**Regola d'oro:** Non mostrare solo un grafico. **Racconta la storia** che il dato nasconde.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;footer class="text-center my-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-700 font-bold text-xl"&gt;Un grafico efficace non è quello che mostra di più, ma quello che &lt;span class="gradient-text"&gt;comunica meglio&lt;/span&gt;.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-sm text-gray-500 mt-2"&gt;Data Visualization &amp; Storytelling | Corso Interno 2024&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const chartColors = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>primary: '#F94144',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>secondary: '#F8961E',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tertiary: '#F9C74F',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>quaternary: '#90BE6D',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>neutral: '#577590',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bgPrimary: 'rgba(249, 65, 68, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bgSecondary: 'rgba(248, 150, 30, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bgTertiary: 'rgba(249, 199, 79, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bgQuaternary: 'rgba(144, 190, 109, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bgNeutral: 'rgba(87, 117, 144, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const globalChartOptions = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>legend: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>position: 'bottom',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>labels: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>font: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>family: 'Inter',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>padding: 20</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>tooltip: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>enabled: true,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: '#212529',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>titleFont: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>family: 'Inter',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>size: 14,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>weight: 'bold'</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>bodyFont: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>family: 'Inter',</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>size: 12</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>padding: 10,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>cornerRadius: 5,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>callbacks: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>title: function(tooltipItems) {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>const item = tooltipItems[0];</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>let label = item.chart.data.labels[item.dataIndex];</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>if (Array.isArray(label)) {</p>
-<p class="p1"><span class="Apple-converted-space">                              </span>return label.join(' ');</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                              </span>return label;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>y: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>beginAtZero: true,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>color: '#e5e7eb'</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>ticks: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>font: { family: 'Inter' }</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>x: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>display: false</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>ticks: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>font: { family: 'Inter' }</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function wrapLabel(label, maxWidth = 16) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (label.length &lt;= maxWidth) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return label;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const words = label.split(' ');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const lines = [];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentLine = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>words.forEach(word =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if ((currentLine + ' ' + word).trim().length &gt; maxWidth) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(currentLine.trim());</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = word;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = (currentLine + ' ' + word).trim();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (currentLine) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>lines.push(currentLine.trim());</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const barChartCtx = document.getElementById('barChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(barChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Regione A', 'Regione B', 'Regione C', 'Regione D'],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Vendite (in K €)',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [120, 250, 150, 80],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [chartColors.bgPrimary, chartColors.bgSecondary, chartColors.bgTertiary, chartColors.bgNeutral],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.neutral],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 2,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderRadius: 5</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: { ...globalChartOptions }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const lineChartCtx = document.getElementById('lineChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(lineChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'line',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Q1', 'Q2', 'Q3', 'Q4'],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Visite al Sito (in K)',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [65, 79, 92, 81],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>fill: true,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: chartColors.secondary,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: chartColors.bgSecondary,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>tension: 0.4,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointBackgroundColor: chartColors.secondary,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointRadius: 5</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: { ...globalChartOptions }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(doughnutChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'doughnut',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Marketing', 'Sviluppo', 'Vendite', 'Amministrazione'],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Distribuzione Budget',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [45, 25, 15, 15],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [chartColors.quaternary, chartColors.neutral, chartColors.primary, chartColors.secondary],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>hoverOffset: 4</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>...globalChartOptions,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>y: { display: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>x: { display: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const scatterChartCtx = document.getElementById('scatterChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(scatterChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'scatter',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Investimento vs Acquisizioni',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>{x: 100, y: 20}, {x: 120, y: 24}, {x: 150, y: 35}, {x: 180, y: 38},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>{x: 200, y: 45}, {x: 230, y: 55}, {x: 250, y: 58}, {x: 280, y: 65}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: chartColors.neutral,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointRadius: 6,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointHoverRadius: 8</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>...globalChartOptions,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>x: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>...globalChartOptions.scales.x,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>title: { display: true, text: 'Investimento (in €)' }</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>y: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>...globalChartOptions.scales.y,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>title: { display: true, text: 'Clienti Acquisiti' }</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                <span class="gradient-text">L'Arte di Raccontare Storie</span><br>con i Dati
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Una guida interattiva per trasformare numeri complessi in insight chiari e decisioni efficaci attraverso la data visualization.</p>
+        </header>
+
+        <section id="perche" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-10">1. Perché Visualizzare i Dati?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-3" style="color: #F94144;">💡</div>
+                    <h3 class="text-xl font-bold mb-2">Scoprire Insight</h3>
+                    <p class="text-gray-600">Identifica pattern, trend, correlazioni e anomalie che rimarrebbero nascosti in una tabella.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-3" style="color: #F8961E;">🧩</div>
+                    <h3 class="text-xl font-bold mb-2">Semplificare</h3>
+                    <p class="text-gray-600">Traduci set di dati complessi in formati immediatamente comprensibili a colpo d'occhio.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-3" style="color: #43AA8B;">📢</div>
+                    <h3 class="text-xl font-bold mb-2">Comunicare</h3>
+                    <p class="text-gray-600">Trasmetti il tuo messaggio in modo più efficace, persuasivo e memorabile al pubblico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-3" style="color: #577590;">🎯</div>
+                    <h3 class="text-xl font-bold mb-2">Guidare Decisioni</h3>
+                    <p class="text-gray-600">Fornisci una base solida e visiva per prendere decisioni strategiche più informate e rapide.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pilastri" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-6">2. I Pilastri di un Grafico Efficace</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Un grafico deve essere **funzionale** e trasmettere il messaggio senza distorsioni o rumore visivo.</p>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center">
+                <div class="p-4 rounded-lg bg-red-50" style="border: 2px solid #F94144;">
+                    <h4 class="font-bold text-lg" style="color: #F94144;">Chiarezza</h4>
+                    <p class="text-sm text-gray-600">Messaggio immediato.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-amber-50" style="border: 2px solid #F8961E;">
+                    <h4 class="font-bold text-lg" style="color: #F8961E;">Accuratezza</h4>
+                    <p class="text-sm text-gray-600">Dati veritieri (Asse Y da zero).</p>
+                </div>
+                <div class="p-4 rounded-lg bg-yellow-50" style="border: 2px solid #F9C74F;">
+                    <h4 class="font-bold text-lg" style="color: #F9C74F;">Semplicità</h4>
+                    <p class="text-sm text-gray-600">Rimuovi il disordine ("Chart Junk").</p>
+                </div>
+                <div class="p-4 rounded-lg bg-green-50" style="border: 2px solid #90BE6D;">
+                    <h4 class="font-bold text-lg" style="color: #90BE6D;">Contesto</h4>
+                    <p class="text-sm text-gray-600">Titolo, assi e unità etichettati.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-blue-50" style="border: 2px solid #577590;">
+                    <h4 class="font-bold text-lg" style="color: #577590;">Messaggio</h4>
+                    <p class="text-sm text-gray-600">Un solo obiettivo forte.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="guida" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">3. La Guida alla Scelta del Grafico</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Scegli lo strumento in base all'obiettivo: **Confronto, Tendenza, Proporzione o Relazione.**</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F94144;">Confrontare: Grafico a Barre</h3>
+                    <p class="text-gray-600 mb-4 text-center">Ideale per confrontare categorie discrete. Usa l'ordinamento per facilitare la classifica.</p>
+                    <div class="chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Vendite per Regione nel Q1 2024" – Identifica chiaramente il leader di mercato (Regione B).</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F8961E;">Tendenza: Grafico a Linee</h3>
+                    <p class="text-gray-600 mb-4 text-center">Essenziale per mostrare andamenti e serie storiche nel tempo (es. mesi, trimestri).</p>
+                    <div class="chart-container">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Andamento delle Visite al Sito Web" – Evidenzia picchi e cali stagionali nel corso dell'anno.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #90BE6D;">Proporzioni: Grafico a Ciambella</h3>
+                    <p class="text-gray-600 mb-4 text-center">Per mostrare la composizione di un intero (il 100%). **Usare solo per 2-4 categorie distinte.**</p>
+                    <div class="chart-container">
+                        <canvas id="doughnutChart"></canvas>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Distribuzione Budget" – Mostra che la maggioranza del budget (45%) è dedicata al Marketing.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #577590;">Relazioni: Grafico a Dispersione</h3>
+                    <p class="text-gray-600 mb-4 text-center">Per trovare correlazioni tra due variabili (es. se X aumenta, aumenta anche Y?).</p>
+                    <div class="chart-container">
+                        <canvas id="scatterChart"></canvas>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Investimento vs Acquisizioni" – Conferma una correlazione positiva tra i due fattori.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="colori" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-6">4. L'Importanza Etica del Colore</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Il colore guida l'occhio. Usalo per significato, non per estetica. La palette "Vibrant" qui utilizzata è: #F94144, #F8961E, #F9C74F, #90BE6D, #43AA8B, #577590.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F8961E;">Sequenziali</h4>
+                    <p class="text-sm text-gray-600 mb-3">Intensità crescente di un valore (es. Mappa di Calore).</p>
+                    <div class="flex rounded-lg overflow-hidden">
+                        <div class="w-1/5 h-12" style="background-color: #ffe0d5;"></div>
+                        <div class="w-1/5 h-12" style="background-color: #f9b49b;"></div>
+                        <div class="w-1/5 h-12" style="background-color: #f68c74;"></div>
+                        <div class="w-1/5 h-12" style="background-color: #F94144;"></div>
+                        <div class="w-1/5 h-12" style="background-color: #d6383c;"></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #577590;">Divergenti</h4>
+                    <p class="text-sm text-gray-600 mb-3">Deviazioni da un punto centrale (es. Profitti/Perdite).</p>
+                    <div class="flex rounded-lg overflow-hidden">
+                        <div class="w-1/4 h-12" style="background-color: #F94144;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #f9c74f;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #90BE6D;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #43AA8B;"></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #43AA8B;">Categorici</h4>
+                    <p class="text-sm text-gray-600 mb-3">Distinguere gruppi non ordinati (es. Nomi di prodotti).</p>
+                    <div class="flex rounded-lg overflow-hidden">
+                        <div class="w-1/4 h-12" style="background-color: #F9844A;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #F9C74F;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #90BE6D;"></div>
+                        <div class="w-1/4 h-12" style="background-color: #577590;"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-center text-gray-500">**Accessibilità:** Evita combinazioni rosso/verde per distinzioni critiche per non penalizzare chi soffre di daltonismo.</p>
+        </section>
+
+        <section id="consigli" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-10">5. Storytelling e Narrazione con i Dati</h2>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-xl mr-3" style="color: #F94144;">1.</span>
+                        <div>
+                            <h4 class="font-bold">Il "Perché"</h4>
+                            <p class="text-gray-600">Inizia spiegando perché il dato è rilevante per il pubblico. Dà un contesto.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-xl mr-3" style="color: #F8961E;">2.</span>
+                        <div>
+                            <h4 class="font-bold">Il "Cosa"</h4>
+                            <p class="text-gray-600">Mostra il grafico con un titolo che sia già l'insight ("Le vendite sono cresciute del 20%").</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-xl mr-3" style="color: #90BE6D;">3.</span>
+                        <div>
+                            <h4 class="font-bold">L'Azione</h4>
+                            <p class="text-gray-600">Concludi con l'implicazione: "Cosa facciamo ora che conosciamo questo dato?".</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="mt-6 text-sm text-center text-gray-500">**Regola d'oro:** Non mostrare solo un grafico. **Racconta la storia** che il dato nasconde.</p>
+            </div>
+        </section>
+
+        <!-- NUOVA SEZIONE: FUNZIONALITÀ GEMINI API -->
+        <section id="ai-advice" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-6">6. Consulenza Storytelling AI</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Inserisci il tuo scenario di visualizzazione dati (es. "Devo confrontare 100 prodotti diversi") e l'IA ti suggerirà la migliore strategia.</p>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <input id="promptInput" type="text" placeholder="Il mio problema è:..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500" />
+                <button onclick="getAIAdvice()" id="generateButton" class="w-full py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors duration-300 flex items-center justify-center">
+                    Ottieni Strategia AI
+                </button>
+            </div>
+
+            <div id="loadingIndicator" class="mt-6 text-center hidden">
+                <div class="loader mx-auto"></div>
+                <p class="text-gray-500 mt-2">L'AI sta analizzando il tuo problema...</p>
+            </div>
+
+            <div id="adviceOutput" class="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
+                <p class="text-gray-700 font-semibold" id="adviceTitle">Risposta del Consulente:</p>
+                <div id="adviceText" class="mt-2 text-gray-600">
+                    Qui apparirà il consiglio dell'AI non appena lo genererai.
+                </div>
+            </div>
+        </section>
+        <!-- FINE NUOVA SEZIONE -->
+
+        <footer class="text-center my-12">
+            <p class="text-gray-700 font-bold text-xl">Un grafico efficace non è quello che mostra di più, ma quello che <span class="gradient-text">comunica meglio</span>.</p>
+            <p class="text-sm text-gray-500 mt-2">Data Visualization & Storytelling | Corso Interno 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        const chartColors = {
+            primary: '#F94144', secondary: '#F8961E', tertiary: '#F9C74F', quaternary: '#90BE6D', neutral: '#577590',
+            bgPrimary: 'rgba(249, 65, 68, 0.2)', bgSecondary: 'rgba(248, 150, 30, 0.2)', bgTertiary: 'rgba(249, 199, 79, 0.2)',
+            bgQuaternary: 'rgba(144, 190, 109, 0.2)', bgNeutral: 'rgba(87, 117, 144, 0.2)',
+        };
+
+        const globalChartOptions = {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { font: { family: 'Inter' }, padding: 20 } },
+                tooltip: {
+                    enabled: true, backgroundColor: '#212529',
+                    titleFont: { family: 'Inter', size: 14, weight: 'bold' },
+                    bodyFont: { family: 'Inter', size: 12 }, padding: 10, cornerRadius: 5,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) { return label.join(' '); } else { return label; }
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: '#e5e7eb' }, ticks: { font: { family: 'Inter' } } },
+                x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+            }
+        };
+
+        function initializeCharts() {
+            const barChartCtx = document.getElementById('barChart').getContext('2d');
+            new Chart(barChartCtx, {
+                type: 'bar', data: {
+                    labels: ['Regione A', 'Regione B', 'Regione C', 'Regione D'],
+                    datasets: [{
+                        label: 'Vendite (in K €)', data: [120, 250, 150, 80],
+                        backgroundColor: [chartColors.bgPrimary, chartColors.bgSecondary, chartColors.bgTertiary, chartColors.bgNeutral],
+                        borderColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.neutral],
+                        borderWidth: 2, borderRadius: 5
+                    }]
+                }, options: { ...globalChartOptions }
+            });
+
+            const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+            new Chart(lineChartCtx, {
+                type: 'line', data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{
+                        label: 'Visite al Sito (in K)', data: [65, 79, 92, 81],
+                        fill: true, borderColor: chartColors.secondary, backgroundColor: chartColors.bgSecondary,
+                        tension: 0.4, pointBackgroundColor: chartColors.secondary, pointRadius: 5
+                    }]
+                }, options: { ...globalChartOptions }
+            });
+
+            const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
+            new Chart(doughnutChartCtx, {
+                type: 'doughnut', data: {
+                    labels: ['Marketing', 'Sviluppo', 'Vendite', 'Amministrazione'],
+                    datasets: [{
+                        label: 'Distribuzione Budget', data: [45, 25, 15, 15],
+                        backgroundColor: [chartColors.quaternary, chartColors.neutral, chartColors.primary, chartColors.secondary],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    ...globalChartOptions, scales: { y: { display: false }, x: { display: false } }
+                }
+            });
+
+            const scatterChartCtx = document.getElementById('scatterChart').getContext('2d');
+            new Chart(scatterChartCtx, {
+                type: 'scatter', data: {
+                    datasets: [{
+                        label: 'Investimento vs Acquisizioni',
+                        data: [
+                            {x: 100, y: 20}, {x: 120, y: 24}, {x: 150, y: 35}, {x: 180, y: 38},
+                            {x: 200, y: 45}, {x: 230, y: 55}, {x: 250, y: 58}, {x: 280, y: 65}
+                        ],
+                        backgroundColor: chartColors.neutral, pointRadius: 6, pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    ...globalChartOptions,
+                    scales: {
+                        x: { ...globalChartOptions.scales.x, title: { display: true, text: 'Investimento (in €)' } },
+                        y: { ...globalChartOptions.scales.y, title: { display: true, text: 'Clienti Acquisiti' } }
+                    }
+                }
+            });
+        }
+        window.onload = initializeCharts;
+
+        async function fetchWithRetry(url, options, retries = 3) {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response;
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    const delay = Math.pow(2, i) * 1000;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        async function getAIAdvice() {
+            const promptInput = document.getElementById('promptInput');
+            const adviceOutput = document.getElementById('adviceText');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const generateButton = document.getElementById('generateButton');
+            
+            const userQuery = promptInput.value.trim();
+
+            if (!userQuery) {
+                adviceOutput.innerHTML = '<span style="color: #F94144;">Per favore, inserisci uno scenario o un problema di visualizzazione dati.</span>';
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            generateButton.disabled = true;
+            adviceOutput.innerHTML = '';
+            
+            const systemPrompt = "Agisci come un esperto di Data Visualization e Storytelling. Analizza lo scenario fornito dall'utente e restituisci un consiglio conciso (massimo 80 parole) e pratico, suggerendo il tipo di grafico migliore e la strategia chiave di storytelling da usare. Rispondi solo in italiano.";
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+
+            try {
+                const response = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (text) {
+                    adviceOutput.innerHTML = text.replace(/\n/g, '<br>');
+                } else {
+                    adviceOutput.innerHTML = '<span style="color: #F94144;">Errore nella generazione: impossibile ottenere un consiglio dall\'AI.</span>';
+                }
+            } catch (error) {
+                adviceOutput.innerHTML = `<span style="color: #F94144;">Si è verificato un errore di rete. Riprova. (Dettagli: ${error.message})</span>`;
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                generateButton.disabled = false;
+            }
+        }
+    </script>
 </body>
 </html>
