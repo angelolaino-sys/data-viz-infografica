@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografica: L'Arte della Data Visualization</title>
+    <title>Infographic: Storytelling with Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,6 +45,81 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Stili per la comparazione visiva */
+        .wrong-example {
+            border: 1px dashed #F94144;
+            background-color: #fef2f2;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        .right-example {
+            border: 2px solid #43AA8B;
+            background-color: #f0fdf4;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        /* Contenitori per i nuovi grafici di esempio */
+        .comparison-chart-container {
+            position: relative;
+            width: 100%;
+            height: 180px; /* Altezza fissa per i grafici di confronto */
+        }
+        /* Stili per la simulazione della mappa */
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25rem;
+            width: 100%;
+            max-width: 250px;
+        }
+        .map-cell {
+            height: 2.5rem;
+            border-radius: 0.25rem;
+        }
+
+        /* Nuovi stili per la simulazione dei canali pre-attentivi */
+        .perception-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .perception-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100px;
+            background-color: #fafafa;
+            border-radius: 0.5rem;
+        }
+        .bar {
+            width: 15px;
+            background-color: #F8961E;
+            margin: 0 4px;
+            border-radius: 2px 2px 0 0;
+            transition: height 0.3s;
+        }
+        .dot {
+            border-radius: 50%;
+            background-color: #577590;
+            margin: 0 4px;
+            transition: all 0.3s;
+        }
+        .shape-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        .shape {
+            width: 25px;
+            height: 25px;
+            background-color: #F94144;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -53,115 +128,296 @@
 
         <header class="text-center my-12">
             <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
-                <span class="gradient-text">L'Arte di Raccontare Storie</span><br>con i Dati
+                <span class="gradient-text">Storytelling</span><br>with Data
             </h1>
-            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Una guida interattiva per trasformare numeri complessi in insight chiari e decisioni efficaci attraverso la data visualization.</p>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">A guide to transforming complex numbers into clear insights and effective decisions through data visualization.</p>
         </header>
 
         <section id="perche" class="my-16">
-            <h2 class="text-3xl font-bold text-center mb-10">1. Perché Visualizzare i Dati?</h2>
+            <h2 class="text-3xl font-bold text-center mb-10">1. Why Visualize Data?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
                 <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
                     <div class="text-5xl mb-3" style="color: #F94144;">💡</div>
-                    <h3 class="text-xl font-bold mb-2">Scoprire Insight</h3>
-                    <p class="text-gray-600">Identifica pattern, trend, correlazioni e anomalie che rimarrebbero nascosti in una tabella.</p>
+                    <h3 class="text-xl font-bold mb-2">Discover Insights</h3>
+                    <p class="text-gray-600">Identify patterns, trends, correlations, and anomalies that would remain hidden in a table.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
                     <div class="text-5xl mb-3" style="color: #F8961E;">🧩</div>
-                    <h3 class="text-xl font-bold mb-2">Semplificare</h3>
-                    <p class="text-gray-600">Traduci set di dati complessi in formati immediatamente comprensibili a colpo d'occhio.</p>
+                    <h3 class="text-xl font-bold mb-2">Simplify</h3>
+                    <p class="text-gray-600">Translate complex datasets into formats immediately understandable at a glance.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
                     <div class="text-5xl mb-3" style="color: #43AA8B;">📢</div>
-                    <h3 class="text-xl font-bold mb-2">Comunicare</h3>
-                    <p class="text-gray-600">Trasmetti il tuo messaggio in modo più efficace, persuasivo e memorabile al pubblico.</p>
+                    <h3 class="text-xl font-bold mb-2">Communicate</h3>
+                    <p class="text-gray-600">Transmit your message more effectively, persuasively, and memorably to the audience.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
                     <div class="text-5xl mb-3" style="color: #577590;">🎯</div>
-                    <h3 class="text-xl font-bold mb-2">Guidare Decisioni</h3>
-                    <p class="text-gray-600">Fornisci una base solida e visiva per prendere decisioni strategiche più informate e rapide.</p>
+                    <h3 class="text-xl font-bold mb-2">Drive Decisions</h3>
+                    <p class="text-gray-600">Provide a solid visual basis for making more informed and rapid strategic decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="audience" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-6">2. Preliminary Questions: Knowing the Audience</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Before designing the first chart, you must know <strong>who you are talking to and what you want them to do.</strong> The audience determines the complexity, language, and insight.</p>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F94144;">Who is my audience?</h4>
+                    <p class="text-sm text-gray-600"><strong>Executive:</strong> Only wants the big picture and business impact (conciseness). <strong>Technical:</strong> Appreciates methodology, statistics, and details (accuracy).</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F8961E;">What is the objective?</h4>
+                    <p class="text-sm text-gray-600">You must determine the <strong>action</strong> your presentation should generate. Do you need to inform, persuade, ask for funds, or simply explore the data? The objective defines the insight.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #577590;">What is the Key Insight?</h4>
+                    <p class="text-sm text-gray-600">Do not present all the data. You must choose a maximum of 1-3 main messages. Only the most relevant insights should be displayed prominently.</p>
                 </div>
             </div>
         </section>
 
         <section id="pilastri" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
-            <h2 class="text-3xl font-bold text-center mb-6">2. I Pilastri di un Grafico Efficace</h2>
-            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Un grafico deve essere **funzionale** e trasmettere il messaggio senza distorsioni o rumore visivo.</p>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center">
-                <div class="p-4 rounded-lg bg-red-50" style="border: 2px solid #F94144;">
-                    <h4 class="font-bold text-lg" style="color: #F94144;">Chiarezza</h4>
-                    <p class="text-sm text-gray-600">Messaggio immediato.</p>
+            <h2 class="text-3xl font-bold text-center mb-6">3. Pillars of an Effective Chart: Visual Comparison</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Each pillar translates into a design choice. Observe the difference between a confusing chart and an optimized one.</p>
+            
+            <div class="space-y-12">
+                <!-- Example 1: Clarity and Simplicity (Chart Junk) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center border-b pb-6">
+                    <div class="lg:col-span-1">
+                        <h4 class="font-bold text-xl mb-1" style="color: #F94144;">1. Clarity / Simplicity</h4>
+                        <p class="text-sm text-gray-600"><strong>Wrong (Chart Junk):</strong> Too many unnecessary elements (colors, borders, dark grids) that overload data perception.</p>
+                        <p class="text-sm text-gray-600 mt-2"><strong>Right:</strong> Minimalism. The focus must be on the data, not static embellishments.</p>
+                    </div>
+                    <div class="lg:col-span-1 wrong-example">
+                        <p class="text-sm font-bold mb-2 text-center text-red-600">WRONG CHART (Too much noise)</p>
+                        <div class="comparison-chart-container">
+                             <canvas id="chartJunkWrong"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 right-example">
+                        <p class="text-sm font-bold mb-2 text-center text-green-700">RIGHT CHART (Minimalist)</p>
+                        <div class="comparison-chart-container">
+                            <canvas id="chartJunkRight"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 rounded-lg bg-amber-50" style="border: 2px solid #F8961E;">
-                    <h4 class="font-bold text-lg" style="color: #F8961E;">Accuratezza</h4>
-                    <p class="text-sm text-gray-600">Dati veritieri (Asse Y da zero).</p>
+
+                <!-- Example 2: Accuracy (Truncated Y-Axis) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center border-b pb-6">
+                    <div class="lg:col-span-1">
+                        <h4 class="font-bold text-xl mb-1" style="color: #F8961E;">2. Accuracy</h4>
+                        <p class="text-sm text-gray-600"><strong>Wrong:</strong> The Y-axis (values) is truncated (does not start from 0), drastically exaggerating the difference between the bars.</p>
+                        <p class="text-sm text-gray-600 mt-2"><strong>Right:</strong> The axis must start from zero to honestly represent volume or absolute values. </p>
+                    </div>
+                    <div class="lg:col-span-1 wrong-example">
+                        <p class="text-sm font-bold mb-2 text-center text-red-600">WRONG (Truncated Y-Axis)</p>
+                        <div class="comparison-chart-container">
+                            <canvas id="accuracyWrong"></canvas>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 right-example">
+                        <p class="text-sm font-bold mb-2 text-center text-green-700">RIGHT (Y-Axis from 0)</p>
+                        <div class="comparison-chart-container">
+                            <canvas id="accuracyRight"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 rounded-lg bg-yellow-50" style="border: 2px solid #F9C74F;">
-                    <h4 class="font-bold text-lg" style="color: #F9C74F;">Semplicità</h4>
-                    <p class="text-sm text-gray-600">Rimuovi il disordine ("Chart Junk").</p>
-                </div>
-                <div class="p-4 rounded-lg bg-green-50" style="border: 2px solid #90BE6D;">
-                    <h4 class="font-bold text-lg" style="color: #90BE6D;">Contesto</h4>
-                    <p class="text-sm text-gray-600">Titolo, assi e unità etichettati.</p>
-                </div>
-                <div class="p-4 rounded-lg bg-blue-50" style="border: 2px solid #577590;">
-                    <h4 class="font-bold text-lg" style="color: #577590;">Messaggio</h4>
-                    <p class="text-sm text-gray-600">Un solo obiettivo forte.</p>
+
+                <!-- Example 3: Context and Message -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <div class="lg:col-span-1">
+                        <h4 class="font-bold text-xl mb-1" style="color: #577590;">3. Context / Message</h4>
+                        <p class="text-sm text-gray-600"><strong>Wrong:</strong> Generic title, without the insight. The audience doesn't know what they should learn.</p>
+                        <p class="text-sm text-gray-600 mt-2"><strong>Right:</strong> The title must be a complete sentence summarizing the key conclusion of the chart.</p>
+                    </div>
+                    <div class="lg:col-span-1 p-4 rounded-lg wrong-example">
+                        <h5 class="font-bold text-base text-center text-red-600">Title: "Sales 2024"</h5>
+                        <p class="text-sm text-gray-600 text-center mt-2">(The message is hidden)</p>
+                        <div class="mt-4 text-center">
+                            <span class="text-4xl text-red-500">❌</span>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 p-4 rounded-lg right-example">
+                        <h5 class="font-bold text-base text-center text-green-700">Title: "Q2 Sales Exceeded Q1 by 45%"</h5>
+                        <p class="text-sm text-gray-600 text-center mt-2">(The message is the insight)</p>
+                        <div class="mt-4 text-center">
+                             <span class="text-4xl text-green-600">✅</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="guida" class="my-16">
-            <h2 class="text-3xl font-bold text-center mb-2">3. La Guida alla Scelta del Grafico</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Scegli lo strumento in base all'obiettivo: **Confronto, Tendenza, Proporzione o Relazione.**</p>
+            <h2 class="text-3xl font-bold text-center mb-2">4. The Chart Selection Guide</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Choose the tool based on the objective: <strong>Comparison, Trend, Proportion, or Relationship.</strong></p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+                <!-- 4.1. Bar Chart -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F94144;">Confrontare: Grafico a Barre</h3>
-                    <p class="text-gray-600 mb-4 text-center">Ideale per confrontare categorie discrete. Usa l'ordinamento per facilitare la classifica.</p>
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F94144;">Compare: Bar Chart</h3>
+                    <p class="text-gray-600 mb-4 text-center">Ideal for comparing discrete categories. Use sorting to facilitate ranking.</p>
                     <div class="chart-container">
                         <canvas id="barChart"></canvas>
                     </div>
-                    <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Vendite per Regione nel Q1 2024" – Identifica chiaramente il leader di mercato (Regione B).</p>
+                    <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "Q1 2024 Regional Sales" – Clearly identifies the market leader (Region B).</p>
                 </div>
 
+                <!-- 4.2. Line Chart -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F8961E;">Tendenza: Grafico a Linee</h3>
-                    <p class="text-gray-600 mb-4 text-center">Essenziale per mostrare andamenti e serie storiche nel tempo (es. mesi, trimestri).</p>
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F8961E;">Trend: Line Chart</h3>
+                    <p class="text-gray-600 mb-4 text-center">Essential for showing trends and time series over time (e.g., months, quarters).</p>
                     <div class="chart-container">
                         <canvas id="lineChart"></canvas>
                     </div>
-                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Andamento delle Visite al Sito Web" – Evidenzia picchi e cali stagionali nel corso dell'anno.</p>
+                     <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "Website Visits Trend" – Highlights seasonal peaks and drops throughout the year.</p>
                 </div>
 
+                <!-- 4.3. Doughnut Chart (Proportions) -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #90BE6D;">Proporzioni: Grafico a Ciambella</h3>
-                    <p class="text-gray-600 mb-4 text-center">Per mostrare la composizione di un intero (il 100%). **Usare solo per 2-4 categorie distinte.**</p>
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #90BE6D;">Proportions: Doughnut Chart</h3>
+                    <p class="text-gray-600 mb-4 text-center">To show the composition of a whole (100%). <strong>Use only for 2-4 distinct categories.</strong></p>
                     <div class="chart-container">
                         <canvas id="doughnutChart"></canvas>
                     </div>
-                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Distribuzione Budget" – Mostra che la maggioranza del budget (45%) è dedicata al Marketing.</p>
+                     <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "Budget Distribution" – Shows that the majority of the budget (45%) is allocated to Marketing.</p>
                 </div>
 
+                <!-- 4.4. Scatter Plot (Relationships) -->
                 <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #577590;">Relazioni: Grafico a Dispersione</h3>
-                    <p class="text-gray-600 mb-4 text-center">Per trovare correlazioni tra due variabili (es. se X aumenta, aumenta anche Y?).</p>
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #577590;">Relationships: Scatter Plot</h3>
+                    <p class="text-gray-600 mb-4 text-center">To find correlations between two variables (e.g., if X increases, does Y also increase?).</p>
                     <div class="chart-container">
                         <canvas id="scatterChart"></canvas>
                     </div>
-                     <p class="mt-4 text-sm text-gray-500 text-center">**Esempio:** "Investimento vs Acquisizioni" – Conferma una correlazione positiva tra i due fattori.</p>
+                     <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "Investment vs Acquisitions" – Confirms a positive correlation between the two factors.</p>
+                </div>
+
+                <!-- 4.5. Histogram (Distribution) -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #F9C74F;">Distribution: Histogram</h3>
+                    <p class="text-gray-600 mb-4 text-center">To show the frequency of a single numerical variable divided into intervals (bins).</p>
+                    <div class="chart-container">
+                        <canvas id="histogramChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "Response Time Distribution (in seconds)" – Shows that most responses are fast (2-4 seconds).</p>
+                </div>
+
+                <!-- 4.6. Maps (Heatmaps / Choropleth Maps) -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-center" style="color: #43AA8B;">Geography: Heatmap / Maps</h3>
+                    <p class="text-gray-600 mb-4 text-center">To visualize the intensity of data based on geographic location or a grid (e.g., density).</p>
+                    <div class="p-4 rounded-lg bg-gray-100 flex justify-center items-center h-56">
+                        <!-- Heatmap Simulation with Tailwind Grid -->
+                        <div class="heatmap-grid w-full max-w-xs">
+                            <div class="map-cell bg-red-800" title="Area 1: High Value"></div>
+                            <div class="map-cell bg-red-600" title="Area 2: Medium-High Value"></div>
+                            <div class="map-cell bg-green-500" title="Area 3: Low Value"></div>
+                            <div class="map-cell bg-red-700" title="Area 4: High Value"></div>
+                            <div class="map-cell bg-red-700" title="Area 5: High Value"></div>
+                            <div class="map-cell bg-red-500" title="Area 6: Medium Value"></div>
+                            <div class="map-cell bg-green-600" title="Area 7: Low Value"></div>
+                            <div class="map-cell bg-red-600" title="Area 8: Medium-High Value"></div>
+                            <div class="map-cell bg-red-600" title="Area 9: Medium-High Value"></div>
+                            <div class="map-cell bg-red-400" title="Area 10: Medium Value"></div>
+                            <div class="map-cell bg-green-700" title="Area 11: Low Value"></div>
+                            <div class="map-cell bg-red-500" title="Area 12: Medium Value"></div>
+                            <div class="map-cell bg-red-500" title="Area 13: Medium Value"></div>
+                            <div class="map-cell bg-red-400" title="Area 14: Medium-Low Value"></div>
+                            <div class="map-cell bg-green-600" title="Area 15: Low Value"></div>
+                            <div class="map-cell bg-red-400" title="Area 16: Medium-Low Value"></div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500 text-center"><strong>Example:</strong> "User Concentration by Geographic Area" – Highlights high-density areas (dark red).</p>
                 </div>
             </div>
         </section>
 
         <section id="colori" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
-            <h2 class="text-3xl font-bold text-center mb-6">4. L'Importanza Etica del Colore</h2>
-            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Il colore guida l'occhio. Usalo per significato, non per estetica. La palette "Vibrant" qui utilizzata è: #F94144, #F8961E, #F9C74F, #90BE6D, #43AA8B, #577590.</p>
+            <h2 class="text-3xl font-bold text-center mb-6">5. The Importance of Color</h2>
+            <p class="text-center text-gray-600 mb-4 max-w-3xl mx-auto">Color guides the eye by exploiting our primary cognitive mechanisms. The brain processes differences in color and intensity (brightness) even before reading text or numbers.</p>
+            
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 border-b pb-8">
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F94144;">1. Visual Pre-Attention</h4>
+                    <p class="text-sm text-gray-600">Color is a "pre-attentive" attribute: we notice it <strong>automatically</strong> before any conscious processing. This allows us to identify outliers or groupings in less than 250 milliseconds.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F8961E;">2. Intensity and Salience</h4>
+                    <p class="text-sm text-gray-600"><strong>Intensity</strong> (brightness or saturation) is the key to guiding the eye. More saturated or darker colors are perceived as more important or represent higher values. This is why sequential palettes work.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #90BE6D;">3. Psychological Association</h4>
+                    <p class="text-sm text-gray-600">The brain subconsciously associates colors with concepts: <strong>red</strong> with alarm or negative, <strong>green</strong> with success or positive. Using counter-intuitive colors can generate confusion or distortion.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold text-center mt-8 mb-6">Beyond Color: Other Pre-Attentive Visual Channels</h3>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 pt-4 border-b pb-8">
+                
+                <!-- 5.4. Position (The Highest Accuracy) -->
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #577590;">1. Position (The Highest Accuracy)</h4>
+                    <p class="text-sm text-gray-600 mb-3">The visual system is most accurate at reading data encoded by <strong>spatial position</strong> (X/Y coordinates). This makes scatter and line plots superior for precise reading.</p>
+                    <div class="perception-grid mt-3">
+                        <div class="perception-container justify-center items-center">
+                            <div class="w-10 h-10 rounded-full" style="background-color: #F94144; transform: translateY(-10px);"></div>
+                        </div>
+                        <div class="perception-container justify-center items-center">
+                            <div class="w-1- h-10 rounded-full" style="background-color: #43AA8B; transform: translateY(10px);"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2"><strong>Ease of Comparison:</strong> Extremely High</p>
+                </div>
+
+                <!-- 5.5. Length and Size -->
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F9C74F;">2. Length and Size</h4>
+                    <p class="text-sm text-gray-600 mb-3"><strong>Length</strong> (bar height) is effective. <strong>Size/Area</strong> (bubble size) is less accurate, making it hard to judge subtle differences.</p>
+                    <div class="perception-grid mt-3">
+                        <div class="perception-container flex-row justify-center items-end">
+                            <div class="bar" style="height: 80px;"></div>
+                            <div class="bar" style="height: 65px;"></div>
+                        </div>
+                        <div class="perception-container flex-row justify-center items-center">
+                            <div class="dot" style="width: 45px; height: 45px;"></div>
+                            <div class="dot" style="width: 38px; height: 38px;"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2"><strong>Ease of Comparison:</strong> High (Length) vs. Low (Size)</p>
+                </div>
+
+                <!-- 5.6. Form and Orientation -->
+                <div>
+                    <h4 class="font-bold text-xl mb-2" style="color: #43AA8B;">3. Form and Orientation</h4>
+                    <p class="text-sm text-gray-600 mb-3">Used for categorical data. <strong>Use sparingly</strong>; detecting combined features (e.g., red square + blue circle) requires slow, serial searching.</p>
+                    <div class="perception-grid mt-3">
+                        <div class="shape-container">
+                            <div class="shape rounded-full bg-red-600"></div>
+                            <div class="shape bg-blue-600 transform rotate-45"></div>
+                            <div class="shape bg-red-600"></div>
+                        </div>
+                        <div class="shape-container">
+                            <div class="shape rounded-full bg-blue-600"></div>
+                            <div class="shape bg-red-600"></div>
+                            <div class="shape rounded-full bg-red-600"></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-2"><strong>Ease of Comparison:</strong> Low (Avoid if possible)</p>
+                </div>
+            </div>
+
+
+            <h3 class="text-2xl font-bold text-center mt-8 mb-6">The Three Fundamental Palettes</h3>
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h4 class="font-bold text-xl mb-2" style="color: #F8961E;">Sequenziali</h4>
-                    <p class="text-sm text-gray-600 mb-3">Intensità crescente di un valore (es. Mappa di Calore).</p>
+                    <h4 class="font-bold text-xl mb-2" style="color: #F8961E;">Sequential</h4>
+                    <p class="text-sm text-gray-600 mb-3">Increasing intensity of a value (e.g., Heatmap).</p>
                     <div class="flex rounded-lg overflow-hidden">
                         <div class="w-1/5 h-12" style="background-color: #ffe0d5;"></div>
                         <div class="w-1/5 h-12" style="background-color: #f9b49b;"></div>
@@ -171,8 +427,8 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xl mb-2" style="color: #577590;">Divergenti</h4>
-                    <p class="text-sm text-gray-600 mb-3">Deviazioni da un punto centrale (es. Profitti/Perdite).</p>
+                    <h4 class="font-bold text-xl mb-2" style="color: #577590;">Diverging</h4>
+                    <p class="text-sm text-gray-600 mb-3">Deviations from a central point (e.g., Profits/Losses).</p>
                     <div class="flex rounded-lg overflow-hidden">
                         <div class="w-1/4 h-12" style="background-color: #F94144;"></div>
                         <div class="w-1/4 h-12" style="background-color: #f9c74f;"></div>
@@ -181,8 +437,8 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xl mb-2" style="color: #43AA8B;">Categorici</h4>
-                    <p class="text-sm text-gray-600 mb-3">Distinguere gruppi non ordinati (es. Nomi di prodotti).</p>
+                    <h4 class="font-bold text-xl mb-2" style="color: #43AA8B;">Categorical</h4>
+                    <p class="text-sm text-gray-600 mb-3">Distinguishing unordered groups (e.g., Product Names).</p>
                     <div class="flex rounded-lg overflow-hidden">
                         <div class="w-1/4 h-12" style="background-color: #F9844A;"></div>
                         <div class="w-1/4 h-12" style="background-color: #F9C74F;"></div>
@@ -191,75 +447,114 @@
                     </div>
                 </div>
             </div>
-            <p class="mt-6 text-sm text-center text-gray-500">**Accessibilità:** Evita combinazioni rosso/verde per distinzioni critiche per non penalizzare chi soffre di daltonismo.</p>
+            <p class="mt-6 text-sm text-center text-gray-500"><strong>Accessibility:</strong> Avoid red/green combinations for critical distinctions to prevent penalizing color-blind individuals.</p>
         </section>
 
         <section id="consigli" class="my-16">
-            <h2 class="text-3xl font-bold text-center mb-10">5. Storytelling e Narrazione con i Dati</h2>
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <ul class="space-y-4">
+            <h2 class="text-3xl font-bold text-center mb-6">6. Additional Tips for a Top Presentation</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <ul class="space-y-6">
                     <li class="flex items-start">
                         <span class="text-xl mr-3" style="color: #F94144;">1.</span>
                         <div>
-                            <h4 class="font-bold">Il "Perché"</h4>
-                            <p class="text-gray-600">Inizia spiegando perché il dato è rilevante per il pubblico. Dà un contesto.</p>
+                            <h4 class="font-bold">Explanatory Titles (Insight-Driven)</h4>
+                            <p class="text-gray-600">Every chart must have a title that summarizes the <strong>key conclusion</strong>, not just the subject. Not "Sales 2024", but "<strong>Q2 Sales Exceeded Q1 by 45%</strong>".</p>
                         </div>
                     </li>
                     <li class="flex items-start">
                         <span class="text-xl mr-3" style="color: #F8961E;">2.</span>
                         <div>
-                            <h4 class="font-bold">Il "Cosa"</h4>
-                            <p class="text-gray-600">Mostra il grafico con un titolo che sia già l'insight ("Le vendite sono cresciute del 20%").</p>
+                            <h4 class="font-bold">Eliminate Chart Junk</h4>
+                            <p class="text-gray-600">Remove all unnecessary elements: borders, shadows, non-essential grids, and complex backgrounds. The focus must be <strong>exclusively on the data</strong>.</p>
                         </div>
                     </li>
                     <li class="flex items-start">
-                        <span class="text-xl mr-3" style="color: #90BE6D;">3.</span>
+                        <span class="text-xl mr-3" style="color: #F9C74F;">3.</span>
                         <div>
-                            <h4 class="font-bold">L'Azione</h4>
-                            <p class="text-gray-600">Concludi con l'implicazione: "Cosa facciamo ora che conosciamo questo dato?".</p>
+                            <h4 class="font-bold">Narrative (Storytelling)</h4>
+                            <p class="text-gray-600">Don't just show charts. Tell a story: explain <strong>what</strong> you are showing, <strong>why</strong> it is important, and <strong>what conclusions</strong> can be drawn. Guide your audience through the data journey.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-xl mr-3" style="color: #90BE6D;">4.</span>
+                        <div>
+                            <h4 class="font-bold">Clear Labels</h4>
+                            <p class="text-gray-600">Ensure axes, legends, and data labels are clearly visible, readable, and understandable. Do not make the audience guess the exact value.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-xl mr-3" style="color: #577590;">5.</span>
+                        <div>
+                            <h4 class="font-bold">Know Your Audience</h4>
+                            <p class="text-gray-600">Adapt the complexity of the charts to your audience. An executive audience will want <strong>concise, action-oriented</strong> charts, while a technical audience might appreciate more statistical detail.</p>
                         </div>
                     </li>
                 </ul>
-                <p class="mt-6 text-sm text-center text-gray-500">**Regola d'oro:** Non mostrare solo un grafico. **Racconta la storia** che il dato nasconde.</p>
             </div>
         </section>
 
-        <!-- NUOVA SEZIONE: FUNZIONALITÀ GEMINI API -->
-        <section id="ai-advice" class="my-16 bg-white p-8 rounded-xl shadow-2xl">
-            <h2 class="text-3xl font-bold text-center mb-6">6. Consulenza Storytelling AI</h2>
-            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Inserisci il tuo scenario di visualizzazione dati (es. "Devo confrontare 100 prodotti diversi") e l'IA ti suggerirà la migliore strategia.</p>
-
-            <div class="max-w-3xl mx-auto space-y-4">
-                <input id="promptInput" type="text" placeholder="Il mio problema è:..." class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500" />
-                <button onclick="getAIAdvice()" id="generateButton" class="w-full py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors duration-300 flex items-center justify-center">
-                    Ottieni Strategia AI
-                </button>
-            </div>
-
-            <div id="loadingIndicator" class="mt-6 text-center hidden">
-                <div class="loader mx-auto"></div>
-                <p class="text-gray-500 mt-2">L'AI sta analizzando il tuo problema...</p>
-            </div>
-
-            <div id="adviceOutput" class="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-                <p class="text-gray-700 font-semibold" id="adviceTitle">Risposta del Consulente:</p>
-                <div id="adviceText" class="mt-2 text-gray-600">
-                    Qui apparirà il consiglio dell'AI non appena lo genererai.
+        <!-- New Section 7: Resources -->
+        <section id="resources" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-6">7. Recommended Resources for Mastery</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-xl shadow-2xl">
+                
+                <!-- Suggested Reading -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #F8961E;">Suggested Reading</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3 font-bold" style="color: #F94144;">📚</span>
+                            <div>
+                                <h4 class="font-bold text-lg">Storytelling with Data: A Data Visualization Guide for Business Professionals</h4>
+                                <p class="text-gray-600 text-sm">By Cole Nussbaumer Knaflic. The essential guide on narrative structure and eliminating clutter.</p>
+                                <a href="https://www.amazon.com/Storytelling-Data-Visualization-Business-Professionals/dp/1119002257" target="_blank" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">Find on Amazon</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-xl mr-3 font-bold" style="color: #F94144;">📰</span>
+                            <div>
+                                <h4 class="font-bold text-lg">Data Visualization Design: Tips and Best Practices</h4>
+                                <p class="text-gray-600 text-sm">A comprehensive article on design principles and tools.</p>
+                                <a href="https://guides.library.jhu.edu/datavisualization/design" target="_blank" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">Read the Article (JHU Library)</a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+
+                <!-- Suggested Courses -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: #43AA8B;">Suggested Courses (Coursera)</h3>
+                    <ul class="space-y-4">
+                         <li class="flex items-start">
+                            <span class="text-xl mr-3 font-bold" style="color: #90BE6D;">🎓</span>
+                            <div>
+                                <h4 class="font-bold text-lg">Data Visualization with Advanced Excel (PwC)</h4>
+                                <p class="text-gray-600 text-sm">Focuses on utilizing advanced charting techniques and features within Excel for professional data storytelling.</p>
+                                <a href="https://www.coursera.org/learn/advanced-excel" target="_blank" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">Explore Course</a>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-xl mr-3 font-bold" style="color: #90BE6D;">🎓</span>
+                            <div>
+                                <h4 class="font-bold text-lg">Data Visualization in Excel (Macquarie University)</h4>
+                                <p class="text-gray-600 text-sm">Covers practical steps for effective visualization and dashboard creation using Microsoft Excel.</p>
+                                <a href="https://www.coursera.org/learn/excel-data-visualization" target="_blank" class="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors">Explore Course</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </section>
-        <!-- FINE NUOVA SEZIONE -->
+
 
         <footer class="text-center my-12">
-            <p class="text-gray-700 font-bold text-xl">Un grafico efficace non è quello che mostra di più, ma quello che <span class="gradient-text">comunica meglio</span>.</p>
-            <p class="text-sm text-gray-500 mt-2">Data Visualization & Storytelling | Corso Interno 2024</p>
+            <p class="text-gray-700 font-bold text-xl">An effective chart is not the one that shows the most, but the one that <span class="gradient-text">communicates best</span>.</p>
+            <p class="text-sm text-gray-500 mt-2">Data Visualization & Storytelling | Internal Course 2025</p>
         </footer>
     </div>
 
     <script>
-        const apiKey = "";
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
         const chartColors = {
             primary: '#F94144', secondary: '#F8961E', tertiary: '#F9C74F', quaternary: '#90BE6D', neutral: '#577590',
             bgPrimary: 'rgba(249, 65, 68, 0.2)', bgSecondary: 'rgba(248, 150, 30, 0.2)', bgTertiary: 'rgba(249, 199, 79, 0.2)',
@@ -289,13 +584,180 @@
             }
         };
 
+        // --- FUNCTIONS FOR COMPARISON CHARTS (Section 3) ---
+
+        function createChartJunkWrong() {
+            const ctx = document.getElementById('chartJunkWrong').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels: ['Product A', 'Product B', 'Product C'],
+                    datasets: [{
+                        label: 'Gross Revenue', data: [15, 25, 18],
+                        backgroundColor: ['#F94144', '#F8961E', '#577590'],
+                        borderColor: '#212529', borderWidth: 3,
+                        borderRadius: 8, hoverBackgroundColor: '#555',
+                    }]
+                }, options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { ...globalChartOptions.plugins.tooltip } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#888' }, 
+                            ticks: { color: '#212529', font: { family: 'Inter', weight: 'bold' } } 
+                        },
+                        x: { 
+                            grid: { color: '#888' }, 
+                            ticks: { color: '#212529', font: { family: 'Inter', weight: 'bold' } } 
+                        }
+                    }
+                }
+            });
+        }
+
+        function createChartJunkRight() {
+            const ctx = document.getElementById('chartJunkRight').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels: ['Product A', 'Product B', 'Product C'],
+                    datasets: [{
+                        label: 'Gross Revenue', data: [15, 25, 18],
+                        backgroundColor: chartColors.secondary, borderColor: chartColors.secondary,
+                        borderWidth: 0, borderRadius: 4,
+                    }]
+                }, options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { ...globalChartOptions.plugins.tooltip } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#e5e7eb' }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        },
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        }
+                    }
+                }
+            });
+        }
+
+        function createAccuracyWrong() {
+            const ctx = document.getElementById('accuracyWrong').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels: ['January', 'February'],
+                    datasets: [{
+                        label: 'Net Profit (€)', data: [80, 95],
+                        backgroundColor: chartColors.primary,
+                        borderRadius: 4,
+                    }]
+                }, options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { ...globalChartOptions.plugins.tooltip } },
+                    scales: {
+                        y: { 
+                            min: 50, // Y-AXIS STARTS AT 50 (WRONG)
+                            max: 100, 
+                            grid: { color: '#e5e7eb' }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        },
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        }
+                    }
+                }
+            });
+        }
+
+        function createAccuracyRight() {
+            const ctx = document.getElementById('accuracyRight').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels: ['January', 'February'],
+                    datasets: [{
+                        label: 'Net Profit (€)', data: [80, 95],
+                        backgroundColor: chartColors.quaternary,
+                        borderRadius: 4,
+                    }]
+                }, options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { ...globalChartOptions.plugins.tooltip } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, // Y-AXIS STARTS AT 0 (RIGHT)
+                            max: 100,
+                            grid: { color: '#e5e7eb' }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        },
+                        x: { 
+                            grid: { display: false }, 
+                            ticks: { font: { family: 'Inter' } } 
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- FUNCTION FOR HISTOGRAM (Section 4) ---
+
+        function createHistogramChart() {
+            const ctx = document.getElementById('histogramChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    // Labels are the bins (intervals)
+                    labels: ['0-1s', '1-2s', '2-3s', '3-4s', '4-5s', '5s+'],
+                    datasets: [{
+                        label: 'Frequency (Count)',
+                        data: [5, 15, 30, 25, 10, 5],
+                        backgroundColor: chartColors.tertiary,
+                        borderColor: 'white', 
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    ...globalChartOptions,
+                    scales: {
+                        y: {
+                            ...globalChartOptions.scales.y,
+                            title: { display: true, text: 'Count' }
+                        },
+                        x: {
+                            ...globalChartOptions.scales.x,
+                            // Key settings to simulate histogram (adjacent bars)
+                            categoryPercentage: 1.0, 
+                            barPercentage: 1.0,
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter' } }
+                        }
+                    },
+                    plugins: {
+                         ...globalChartOptions.plugins,
+                         legend: { display: false }
+                    }
+                }
+            });
+        }
+
+
+        // --- MAIN CHART FUNCTIONS (EXISTING) ---
+
         function initializeCharts() {
+            createChartJunkWrong();
+            createChartJunkRight();
+            createAccuracyWrong();
+            createAccuracyRight();
+            createHistogramChart(); // Initialize the new histogram
+
             const barChartCtx = document.getElementById('barChart').getContext('2d');
             new Chart(barChartCtx, {
                 type: 'bar', data: {
-                    labels: ['Regione A', 'Regione B', 'Regione C', 'Regione D'],
+                    labels: ['Region A', 'Region B', 'Region C', 'Region D'],
                     datasets: [{
-                        label: 'Vendite (in K €)', data: [120, 250, 150, 80],
+                        label: 'Sales (in K €)', data: [120, 250, 150, 80],
                         backgroundColor: [chartColors.bgPrimary, chartColors.bgSecondary, chartColors.bgTertiary, chartColors.bgNeutral],
                         borderColor: [chartColors.primary, chartColors.secondary, chartColors.tertiary, chartColors.neutral],
                         borderWidth: 2, borderRadius: 5
@@ -308,7 +770,7 @@
                 type: 'line', data: {
                     labels: ['Q1', 'Q2', 'Q3', 'Q4'],
                     datasets: [{
-                        label: 'Visite al Sito (in K)', data: [65, 79, 92, 81],
+                        label: 'Website Visits (in K)', data: [65, 79, 92, 81],
                         fill: true, borderColor: chartColors.secondary, backgroundColor: chartColors.bgSecondary,
                         tension: 0.4, pointBackgroundColor: chartColors.secondary, pointRadius: 5
                     }]
@@ -318,9 +780,9 @@
             const doughnutChartCtx = document.getElementById('doughnutChart').getContext('2d');
             new Chart(doughnutChartCtx, {
                 type: 'doughnut', data: {
-                    labels: ['Marketing', 'Sviluppo', 'Vendite', 'Amministrazione'],
+                    labels: ['Marketing', 'Development', 'Sales', 'Administration'],
                     datasets: [{
-                        label: 'Distribuzione Budget', data: [45, 25, 15, 15],
+                        label: 'Budget Distribution', data: [45, 25, 15, 15],
                         backgroundColor: [chartColors.quaternary, chartColors.neutral, chartColors.primary, chartColors.secondary],
                         hoverOffset: 4
                     }]
@@ -334,7 +796,7 @@
             new Chart(scatterChartCtx, {
                 type: 'scatter', data: {
                     datasets: [{
-                        label: 'Investimento vs Acquisizioni',
+                        label: 'Investment vs Acquisitions',
                         data: [
                             {x: 100, y: 20}, {x: 120, y: 24}, {x: 150, y: 35}, {x: 180, y: 38},
                             {x: 200, y: 45}, {x: 230, y: 55}, {x: 250, y: 58}, {x: 280, y: 65}
@@ -345,74 +807,13 @@
                 options: {
                     ...globalChartOptions,
                     scales: {
-                        x: { ...globalChartOptions.scales.x, title: { display: true, text: 'Investimento (in €)' } },
-                        y: { ...globalChartOptions.scales.y, title: { display: true, text: 'Clienti Acquisiti' } }
+                        x: { ...globalChartOptions.scales.x, title: { display: true, text: 'Investment (in €)' } },
+                        y: { ...globalChartOptions.scales.y, title: { display: true, text: 'Clients Acquired' } }
                     }
                 }
             });
         }
         window.onload = initializeCharts;
-
-        async function fetchWithRetry(url, options, retries = 3) {
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return response;
-                } catch (error) {
-                    if (i === retries - 1) throw error;
-                    const delay = Math.pow(2, i) * 1000;
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                }
-            }
-        }
-
-        async function getAIAdvice() {
-            const promptInput = document.getElementById('promptInput');
-            const adviceOutput = document.getElementById('adviceText');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const generateButton = document.getElementById('generateButton');
-            
-            const userQuery = promptInput.value.trim();
-
-            if (!userQuery) {
-                adviceOutput.innerHTML = '<span style="color: #F94144;">Per favore, inserisci uno scenario o un problema di visualizzazione dati.</span>';
-                return;
-            }
-
-            loadingIndicator.classList.remove('hidden');
-            generateButton.disabled = true;
-            adviceOutput.innerHTML = '';
-            
-            const systemPrompt = "Agisci come un esperto di Data Visualization e Storytelling. Analizza lo scenario fornito dall'utente e restituisci un consiglio conciso (massimo 80 parole) e pratico, suggerendo il tipo di grafico migliore e la strategia chiave di storytelling da usare. Rispondi solo in italiano.";
-
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-            };
-
-            try {
-                const response = await fetchWithRetry(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-                if (text) {
-                    adviceOutput.innerHTML = text.replace(/\n/g, '<br>');
-                } else {
-                    adviceOutput.innerHTML = '<span style="color: #F94144;">Errore nella generazione: impossibile ottenere un consiglio dall\'AI.</span>';
-                }
-            } catch (error) {
-                adviceOutput.innerHTML = `<span style="color: #F94144;">Si è verificato un errore di rete. Riprova. (Dettagli: ${error.message})</span>`;
-            } finally {
-                loadingIndicator.classList.add('hidden');
-                generateButton.disabled = false;
-            }
-        }
     </script>
 </body>
 </html>
