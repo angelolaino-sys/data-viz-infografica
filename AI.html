@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Data Visualization Infographic</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0D1117',
+                        'card-bg': '#161B22',
+                        'text-light': '#C9D1D9',
+                        'accent-blue': '#58A6FF', /* Optimization */
+                        'accent-green': '#3FB950', /* Clustering */
+                        'accent-red': '#F85149', /* Narration */
+                        'accent-yellow': '#F9A826', /* Prompting & Semantic */
+                        'step-color': '#8B949E',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles for interactive details */
+        .details-summary {
+            cursor: pointer;
+            list-style: none; 
+            outline: none;
+            transition: color 0.2s;
+        }
+
+        .details-summary::before {
+            content: '▶';
+            margin-right: 0.5rem;
+            display: inline-block;
+            transition: transform 0.2s;
+            color: var(--step-color);
+        }
+
+        details[open] .details-summary::before {
+            content: '▼';
+            transform: rotate(0deg);
+        }
+
+        .details-summary:hover {
+            color: white;
+        }
+
+        /* Animation style for expanded content */
+        .details-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styles for the Prompting Guide section */
+        .step-box {
+            background-color: #1e2229;
+            border-left: 4px solid var(--accent-yellow);
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .step-box:hover {
+            background-color: #262a32;
+            box-shadow: 0 0 15px rgba(249, 168, 38, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg min-h-screen p-6 sm:p-10 font-sans text-text-light">
+
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-accent-blue mb-1 border-b-2 border-accent-blue/30 pb-2">
+                🤖 AI in Data Visualization
+            </h1>
+            <p class="text-sm font-semibold text-accent-yellow mb-4">
+                Created by Angelo Laino
+            </p>
+            <p class="text-lg text-text-light/80">
+                AI is a <strong>powerful co-pilot</strong>. Understanding <strong>how</strong> to ask it to analyze and visualize data is the <strong>key</strong> to fast and accurate insights.
+            </p>
+        </header>
+
+        <!-- Section 1: The 4 Pillars of AI in DV -->
+        <h2 class="text-2xl font-bold text-white text-center mb-6">The 4 Pillars: How AI Acts on Data</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            
+            <!-- Pillar 1: Optimization (Creation) -->
+            <div class="card bg-card-bg rounded-xl p-5 shadow-xl border border-accent-blue/20 transform transition duration-300 hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl mr-3 text-accent-blue">📈</span>
+                    <h3 class="text-xl font-bold text-white">1. Optimization (Creation)</h3>
+                </div>
+                <p class="text-sm mb-3 text-text-light/80">
+                    Automatic suggestion of the most appropriate chart (e.g., <strong>Bar Chart</strong> instead of a misleading Pie Chart).
+                </p>
+                <details class="bg-card-bg/50 p-2 rounded-md border border-accent-blue/10">
+                    <summary class="details-summary text-sm font-medium text-accent-blue">Details: Classification Models</summary>
+                    <div class="details-content mt-1 text-xs text-text-light/70">
+                        AI analyzes the <strong>statistical properties</strong> of data (cardinality, distribution) to apply Data Viz "<strong>best practices</strong>" in real-time.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Pillar 2: Semantic Grouping (NEW) -->
+            <div class="card bg-card-bg rounded-xl p-5 shadow-xl border border-accent-yellow/20 transform transition duration-300 hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl mr-3 text-accent-yellow">🧠</span>
+                    <h3 class="text-xl font-bold text-white">2. Semantic Grouping (Intent)</h3>
+                </div>
+                <p class="text-sm mb-3 text-text-light/80">
+                    Categorizes data based on <strong>meaning and intent</strong>, a key step before statistical analysis.
+                </p>
+                <details class="bg-card-bg/50 p-2 rounded-md border border-accent-yellow/10">
+                    <summary class="details-summary text-sm font-medium text-accent-yellow">Details: Logic vs. Statistics</summary>
+                    <div class="details-content mt-1 text-xs text-text-light/70">
+                        <strong>Semantic Grouping</strong> (Manual/Logical) gathers keywords by topic (e.g., 'solar kit' and 'solar panel' are <strong>Solar/PV</strong>). This differs from <strong>Clustering</strong>, which groups by metrics (e.g., all high-CTR keywords).
+                    </div>
+                </details>
+            </div>
+
+
+            <!-- Pillar 3: Discovery (Clustering K-Means) -->
+            <div class="card bg-card-bg rounded-xl p-5 shadow-xl border border-accent-green/20 transform transition duration-300 hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl mr-3 text-accent-green">🧩</span>
+                    <h3 class="text-xl font-bold text-white">3. Discovery (K-Means Clustering)</h3>
+                </div>
+                <p class="text-sm mb-3 text-text-light/80">
+                    <strong>Automatic segmentation</strong> and identification of <strong>hidden patterns</strong> in multidimensional datasets (e.g., CTR vs PR).
+                </p>
+                <details class="bg-card-bg/50 p-2 rounded-md border border-accent-green/10">
+                    <summary class="details-summary text-sm font-medium text-accent-green">Details: Standard Scaling</summary>
+                    <div class="details-content mt-1 text-xs text-text-light/70">
+                        AI handles <strong>pre-processing</strong> (e.g., Standard Scaling) to make metrics with different scales <strong>comparable</strong>, ensuring statistical accuracy for <strong>K-Means</strong>.
+                    </div>
+                </details>
+            </div>
+
+            <!-- Pillar 4: Narration -->
+            <div class="card bg-card-bg rounded-xl p-5 shadow-xl border border-accent-red/20 transform transition duration-300 hover:scale-[1.02]">
+                <div class="flex items-center mb-3">
+                    <span class="text-3xl mr-3 text-accent-red">🗣️</span>
+                    <h3 class="text-xl font-bold text-white">4. Accessibility (NLG Narration)</h3>
+                </div>
+                <p class="text-sm mb-3 text-text-light/80">
+                    Translates <strong>visual patterns</strong> into <strong>human language</strong> and detects statistical <strong>Anomalies</strong>.
+                </p>
+                <details class="bg-card-bg/50 p-2 rounded-md border border-accent-red/10">
+                    <summary class="details-summary text-sm font-medium text-accent-red">Details: Anomaly Detection</summary>
+                    <div class="details-content mt-1 text-xs text-text-light/70">
+                        <strong>NLG (Natural Language Generation)</strong> produces automatic captions explaining peaks or dips detected by the <strong>Anomaly Detection</strong> algorithm, providing immediate insight.
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <!-- Section 2: The Prompting Guide (User Input) -->
+        <hr class="border-t border-step-color/30 mb-8">
+        <h2 class="text-2xl font-bold text-white text-center mb-6">🧭 Prompting Guide: How to Interact for Perfect Output</h2>
+        <p class="text-center mb-8 text-text-light/80 max-w-4xl mx-auto">
+            The accuracy of AI visualization depends on the clarity of your <strong>input</strong>. Follow these <strong>4 steps</strong> to guide the analysis.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- STEP 1 -->
+            <div class="step-box step-1">
+                <div class="text-3xl font-extrabold text-accent-yellow mb-2">1. GOAL</div>
+                <h4 class="font-semibold text-white mb-1">Define the Analytical Objective</h4>
+                <p class="text-xs text-text-light/70">
+                    <strong>What do you want to discover?</strong> (<strong>Comparison</strong>, <strong>Distribution</strong>, <strong>Relationship</strong>, <strong>Trend</strong>). AI uses this to select the base chart type.
+                </p>
+                <p class="text-xs mt-2 font-mono bg-dark-bg p-1 rounded-sm text-accent-yellow/80">
+                    Example: "I want to analyze the <strong>Relationship</strong> between CTR and PR variables."
+                </p>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step-box step-2">
+                <div class="text-3xl font-extrabold text-accent-yellow mb-2">2. VARIABLES</div>
+                <h4 class="font-semibold text-white mb-1">Name the Variables and Their Role</h4>
+                <p class="text-xs text-text-light/70">
+                    <strong>Which data to use?</strong> Specify the <strong>columns</strong> (X and Y) and whether one is the dependent or independent variable.
+                </p>
+                <p class="text-xs mt-2 font-mono bg-dark-bg p-1 rounded-sm text-accent-yellow/80">
+                    Example: "Use <strong>CTR</strong> on the X-axis and <strong>PR</strong> on the Y-axis."
+                </p>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step-box step-3">
+                <div class="text-3xl font-extrabold text-accent-yellow mb-2">3. AI METHOD</div>
+                <h4 class="font-semibold text-white mb-1">Request the Specific ML Technique</h4>
+                <p class="text-xs text-text-light/70">
+                    If the goal is advanced, state the <strong>technique</strong> (<strong>Clustering</strong>, <strong>Scaling</strong>, <strong>Regression</strong>, etc.) and the <strong>parameters</strong>.
+                </p>
+                <p class="text-xs mt-2 font-mono bg-dark-bg p-1 rounded-sm text-accent-yellow/80">
+                    Example: "Apply <strong>Standard Scaling</strong> and then <strong>K-Means</strong> with $K=3$."
+                </p>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step-box step-4">
+                <div class="text-3xl font-extrabold text-accent-yellow mb-2">4. FORMAT</div>
+                <h4 class="font-semibold text-white mb-1">Define the Output and Style</h4>
+                <p class="text-xs text-text-light/70">
+                    Specify the <strong>output</strong> (<strong>Chart</strong>, <strong>Table</strong>), the <strong>visual style</strong> (colors, title), or the <strong>narration</strong> request (<strong>NLG</strong>).
+                </p>
+                <p class="text-xs mt-2 font-mono bg-dark-bg p-1 rounded-sm text-accent-yellow/80">
+                    Example: "Return a <strong>Scatter Plot</strong> colored by cluster. Provide an <strong>NLG summary</strong>."
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 p-6 bg-card-bg rounded-xl border border-accent-yellow/20 text-center">
+            <h3 class="text-xl font-semibold text-accent-yellow mb-2">AI is Your Discovery Tool</h3>
+            <p class="text-text-light/70">
+                The combination of a <strong>well-structured prompt</strong> and the <strong>power of Machine Learning</strong> unlocks insights impossible to achieve with manual visualization.
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
